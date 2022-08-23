@@ -1,4 +1,8 @@
 
+{% include 'base.html' %}
+
+{% block content %}
+
 <!DOCTYPE html>
 <html>
 
@@ -29,8 +33,8 @@
 
 <body>
 
-	<h1> 庫存 </h1>
-	<table>
+	<h1 style="margin: 10px;"> 庫存 </h1>
+	<table style="margin:  10px;">
 		
 
 		<tr>
@@ -40,6 +44,7 @@
 			<th>當時買價</th>
 			<th>目前成交價</th>
 			<th>損益</th>
+			<th>持有天數</th>
 		</tr>
 
 
@@ -47,11 +52,12 @@
 		<tr>
 
 			<td>{{ deal.company_code  }} {{ deal.company_name }}</td>
-			<td>{{ deal.share }}</td>
+			<td>{{ deal.share }} 股</td>
 			<td>{{ deal.bought_date }}</td>
-			<td>{{ deal.bought_price }}</td>
-			<td>{{ deal.current_price }}</td>
-			<td>{{ deal.profit_and_loss }}</td>
+			<td>{{ deal.bought_price }} 元</td>
+			<td>{{ deal.current_price }} 元</td>
+			<td>{{ deal.profit_and_loss }} 元</td>
+			<td>{{ deal.duration }} 天</td>
 
 		</tr>
 
@@ -89,7 +95,11 @@
 
 	</table>
 
-	<a href="/"><button>刷新</button></a>
+	<form action="/"> 
+		<button class="btn btn-dark m-3">刷新</button>
+	</form>
 
 </body>
 </html>
+
+{% endblock %}

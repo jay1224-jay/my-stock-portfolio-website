@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .models import stock_deal
 
 import twstock
+from datetime import datetime
 
 # Create your views here.
 
@@ -41,11 +42,20 @@ def home(request):
             (current_price - deal.bought_price) * deal.share,
             2)
 
+        print(type(deal.bought_date))
+        
+        duration = datetime.now().date() - deal.bought_date
+        deal.duration = duration.days
 
-        print(deal.profit_and_loss)
         deal.save()
 
 
     return render(request, "home.html", {
         "deals": deals
         })
+
+def history(request):
+
+
+
+    return render(request, "history.html")

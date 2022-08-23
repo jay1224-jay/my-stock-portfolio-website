@@ -11,3 +11,4 @@ class stock_deal(models.Model):
 	bought_price = models.FloatField()
 	current_price = models.FloatField(default=0)
 	profit_and_loss = models.FloatField(default=0)
+	duration = models.IntegerField(default=0) # day(s)
