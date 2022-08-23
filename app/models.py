@@ -9,5 +9,5 @@ class stock_deal(models.Model):
 	share = models.IntegerField()
 	bought_date = models.DateField()
 	bought_price = models.FloatField()
-	current_price = models.FloatField()
-	profit_and_loss = models.FloatField()
+	current_price = models.FloatField(default=0)
+	profit_and_loss = models.FloatField(default=0)

@@ -9,14 +9,27 @@
 </head>
 
 <style type="text/css">
+	body{
+		background-color: #8da7c8;
+	}
 	table, th, td{
-		border: 1px solid black;
+		color: black;
+		border: black;
+		border-style: solid;
+		border-width: 2px;
 		text-align: center;
+
+		font-size: 24px;
+	}
+	th, td{
+		padding: 15px;
+		border-width: 3px;
 	}
 </style>
 
 <body>
 
+	<h1> 庫存 </h1>
 	<table>
 		
 
@@ -29,6 +42,23 @@
 			<th>損益</th>
 		</tr>
 
+
+		{% for deal in deals %}
+		<tr>
+
+			<td>{{ deal.company_code  }} {{ deal.company_name }}</td>
+			<td>{{ deal.share }}</td>
+			<td>{{ deal.bought_date }}</td>
+			<td>{{ deal.bought_price }}</td>
+			<td>{{ deal.current_price }}</td>
+			<td>{{ deal.profit_and_loss }}</td>
+
+		</tr>
+
+		{% endfor %} 
+
+
+		<!--
 		<tr>
 			<td>6288 聯嘉</td>
 			<td>1000</td>
@@ -53,6 +83,7 @@
 			<td>63</td>
 			<td>-600</td>
 		</tr>
+	-->
 
 
 

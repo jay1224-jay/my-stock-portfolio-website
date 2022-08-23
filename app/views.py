@@ -1,9 +1,51 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from .models import stock_deal
+
+import twstock
+
 # Create your views here.
 
 
-def hello(request):
+def home(request):
+    """
 
-    return render(request, "home.html")
+    type->str
+
+    float(
+        twstock.realtime.get("2330")["realtime"]["latest_trade_price"]
+        )
+    --> current trade price
+
+    """
+
+    deals = stock_deal.objects.all()
+
+
+    for deal in deals:
+
+        try:
+            current_price = \
+            round(
+                float(twstock.realtime.get(deal.company_code)["realtime"]["latest_trade_price"]),
+                2)
+
+        except:
+            print("log: error while convert {} to float".format(twstock.realtime.get(deal.company_code)["realtime"]["latest_trade_price"]))
+            current_price = 0
+
+
+        deal.current_price = current_price
+        deal.profit_and_loss = round(
+            (current_price - deal.bought_price) * deal.share,
+            2)
+
+
+        print(deal.profit_and_loss)
+        deal.save()
+
+
+    return render(request, "home.html", {
+        "deals": deals
+        })
