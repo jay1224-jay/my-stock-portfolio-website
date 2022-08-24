@@ -13,6 +13,10 @@
 </head>
 
 <style type="text/css">
+	:root {
+  		--red: #ff2a2a;
+  		--green: #22ce22;
+	}
 	body{
 		background-color: #8da7c8;
 	}
@@ -48,8 +52,18 @@
 		</tr>
 
 
+		<!-- 
+			green: #22ce22
+			red:   #ff2a2a-->
 		{% for deal in deals %}
+
+		{% if deal.profit_and_loss < 0 %}
+		<tr style="background-color: var(--green);">
+		{% elif deal.profit_and_loss == 0 %}
 		<tr>
+		{% else %}
+		<tr style="background-color: var(--red);">
+		{% endif %}
 
 			<td>{{ deal.company_code  }} {{ deal.company_name }}</td>
 			<td>{{ deal.share }} 股</td>
@@ -62,6 +76,27 @@
 		</tr>
 
 		{% endfor %} 
+
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+
+			{% if profit_and_loss_sum < 0 %}
+			<td style="background-color: var(--green);">
+			{% elif profit_and_loss_sum == 0 %}
+			<td>
+			{% else %}
+			<td style="background-color: var(--red);">
+			{% endif %}
+			
+			總共 {{ profit_and_loss_sum }} 元
+			</td>
+
+			<td></td>
+		</tr>
 
 
 

@@ -22,6 +22,7 @@ def home(request):
     """
 
     deals = stock_deal.objects.all()
+    profit_and_loss_sum = 0
 
 
     for deal in deals:
@@ -41,6 +42,7 @@ def home(request):
         deal.profit_and_loss = round(
             (current_price - deal.bought_price) * deal.share,
             2)
+        profit_and_loss_sum += deal.profit_and_loss
         
         duration = datetime.now().date() - deal.bought_date
         deal.duration = duration.days
@@ -49,7 +51,8 @@ def home(request):
 
 
     return render(request, "home.html", {
-        "deals": deals
+        "deals": deals,
+        "profit_and_loss_sum": profit_and_loss_sum
         })
 
 def history(request):
