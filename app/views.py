@@ -41,8 +41,6 @@ def home(request):
         deal.profit_and_loss = round(
             (current_price - deal.bought_price) * deal.share,
             2)
-
-        print(type(deal.bought_date))
         
         duration = datetime.now().date() - deal.bought_date
         deal.duration = duration.days
