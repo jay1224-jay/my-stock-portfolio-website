@@ -33,14 +33,39 @@
 		padding: 15px;
 		border-width: 3px;
 	}
-	@media only screen and (hover: none) and (pointer: coarse){
 
+	@media only screen and (max-device-width: 1066px) {
+    /* Styles */
+		table, th, td{
+			font-size: 17px;
+			padding-top: 7px;
+			padding-bottom: 7px;
+			padding-right: 3px;
+			padding-left: 3px;
+			border-width: 3px;
+		}
+	}
+	@media only screen and (max-device-width: 725px) {
+    /* Styles */
 		table, th, td{
 			font-size: 10px;
-			padding: 1px;
+			padding-top: 7px;
+			padding-bottom: 7px;
+			padding-right: 2px;
+			padding-left: 2px;
 			border-width: 2px;
 		}
-
+	}
+	@media only screen and (max-device-width: 500px) {
+    /* Styles */
+		table, th, td{
+			font-size: 10px;
+			padding-top: 7px;
+			padding-bottom: 7px;
+			padding-right: 1px;
+			padding-left: 1px;
+			border-width: 2px;
+		}
 	}
 
 

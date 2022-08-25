@@ -9,6 +9,14 @@ from datetime import datetime
 # Create your views here.
 
 
+def IfAbleToInt(n):
+
+    if int(n) == n:
+        return int(n)
+    return n
+
+
+
 def home(request):
     """
 
@@ -29,9 +37,9 @@ def home(request):
 
         try:
             current_price = \
-            round(
-                float(twstock.realtime.get(deal.company_code)["realtime"]["latest_trade_price"]),
-                2)
+                IfAbleToInt(
+                    float(twstock.realtime.get(deal.company_code)["realtime"]["latest_trade_price"])
+                    )
 
         except:
             print("log: error while convert {} to float".format(twstock.realtime.get(deal.company_code)["realtime"]["latest_trade_price"]))
@@ -39,9 +47,11 @@ def home(request):
 
 
         deal.current_price = current_price
-        deal.profit_and_loss = round(
-            (current_price - deal.bought_price) * deal.share,
-            2)
+
+        deal.profit_and_loss = \
+            IfAbleToInt(round((current_price - deal.bought_price) * deal.share, 2))
+
+
         profit_and_loss_sum += deal.profit_and_loss
         
         duration = datetime.now().date() - deal.bought_date
